@@ -65,6 +65,7 @@ async def handle_message(message):
                 markup.add(types.InlineKeyboardButton(text="🔘 " + category[0] , callback_data=category[0]))
         await bot.send_message(chat_id=message.from_user.id, text="Выберите категорию:", reply_markup=markup)
 
+
 @bot.callback_query_handler(func=lambda call: True)
 async def answer(call):
     markup = types.InlineKeyboardMarkup()
@@ -93,7 +94,7 @@ async def answer(call):
                 is_question = True
                 break
 
-    if (not (is_questionBack) and not (is_categoryBack) and not (is_question) and not (is_category)):
+    if (not (is_questionBack) and not (is_categoryBack) and not (is_question) and not (is_category) and not (call.data == "!back!")):
         for category in list_of_categories:
             if (category[1] == ""):
                 markup.add(types.InlineKeyboardButton(text="🔘 " + category[0], callback_data=category[0]))
