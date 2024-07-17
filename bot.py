@@ -5,7 +5,7 @@ from telebot.async_telebot import AsyncTeleBot
 from telebot import types
 
 
-SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1V07IpXSkcnDZ6plMYDu8D2P4aGoUnu4MguqA2myLTuE/edit#gid=0"
+SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1V07IpXSkcnDZ6plMYDu8D2P4aGoUnu4MguqA2myLTuE/edit?gid=0#gid=0"
 telegrambot = '6627221249:AAErv5DurpVRQkrwADYsNrn63670Zef0UKI'
 bot = AsyncTeleBot(telegrambot)
 
@@ -31,7 +31,13 @@ async def handle_message(message):
     markup = types.InlineKeyboardMarkup()
     mark = types.ReplyKeyboardMarkup(resize_keyboard=True)
     mark.add("Начать")
-    await bot.send_message(chat_id=message.from_user.id, text="Доброго времени суток! 🌗\n\nВ этом боте можно получить актуальные ответы на вопросы о вселенной URBANFIT. Действуй!▶️", reply_markup=mark)
+    await bot.send_message(chat_id=message.from_user.id, text='''Доброго времени суток! 😉
+
+Я LUM(OS) - твой киберпроводник в фитнес-вселенной URBANFIT.
+
+Здесь можно получить актуальные ответы на главные вопросы о том, как в нашей сети всё устроено!
+
+Нажимай «Начать», выбирай нужную категорию и вперёд! ▶️''', reply_markup=mark)
     for category in list_of_categories:
         if (category[1] == ""):
             markup.add(types.InlineKeyboardButton(text="🔘 " + category[0] , callback_data=category[0]))
